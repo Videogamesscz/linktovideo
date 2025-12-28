@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkToVideo - Descarga vídeos en 4K Ultra HD</title>
+    <meta name="description" content="La herramienta definitiva para descargar vídeos de YouTube y más en calidad original. Sin virus, sin esperas.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- ESTILOS GENERALES --- */
+        :root {
+            --primary-red: #CC0000;
+            --hover-red: #A00000;
+            --primary-blue: #0070BA;
+            --hover-blue: #005fa3;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --bg-light: #F5F5F5;
+            --bg-white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            margin-top: 0;
+        }
+
+        a { text-decoration: none; }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- BOTONES --- */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .btn-red {
+            background-color: var(--primary-red);
+            color: white;
+            border: none;
+        }
+        .btn-red:hover { background-color: var(--hover-red); }
+
+        .btn-blue {
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+        }
+        .btn-blue:hover { background-color: var(--hover-blue); }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+        }
+        .btn-outline:hover {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+
+        /* --- HERO SECTION (Cabecera) --- */
+        header {
+            background: linear-gradient(180deg, #FFFFFF 0%, #F0F0F0 100%);
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #111;
+        }
+
+        header p.subtitle {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-image-container {
+            margin-top: 50px;
+            position: relative;
+        }
+
+        .hero-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15); /* Sombra elegante */
+            border: 1px solid #ddd;
+        }
+
+        /* --- BENEFICIOS --- */
+        .benefits {
+            padding: 80px 0;
+            background-color: var(--bg-white);
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* --- CÓMO FUNCIONA --- */
+        .how-it-works {
+            padding: 80px 0;
+            background-color: var(--bg-light);
+            text-align: center;
+        }
+
+        .steps-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 250px;
+            margin: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .step-number {
+            background-color: var(--text-dark);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-weight: bold;
+        }
+
+        /* --- PRECIOS (TRIAL VS PRO) --- */
+        .pricing {
+            padding: 80px 0;
+            background-color: var(--bg-white);
+            text-align: center;
+        }
+
+        .pricing-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .price-card {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 40px;
+            width: 300px;
+            transition: transform 0.2s;
+        }
+
+        .price-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .price-card.pro {
+            border: 2px solid var(--primary-blue);
+            position: relative;
+            background: #fbfdff;
+        }
+
+        .badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 20px 0;
+            color: var(--text-dark);
+        }
+
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .features-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .features-list li:last-child { border-bottom: none; }
+
+        /* --- CTA FINAL --- */
+        .cta-final {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .cta-final h2 { margin-bottom: 20px; }
+
+        footer {
+            background-color: #111;
+            color: #888;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            .pricing-grid { flex-direction: column; align-items: center; }
+            .price-card { width: 100%; max-width: 350px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>Olvídate de las webs de descarga lentas</h1>
+            <p class="subtitle">Descarga tus vídeos favoritos en calidad original (hasta 4K Ultra HD) directamente a tu escritorio. Rápido, seguro y sin publicidad.</p>
+            
+            <div class="cta-buttons">
+                <a href="https://github.com/Videogamesscz/linktovideo/releases/download/LinkToVideoPro/LinkToVideo.Pro.exe" class="btn btn-red">⬇️ Descargar Gratis</a>
+                
+                <a href="https://ko-fi.com/s/c88bda3cb6" target="_blank" class="btn btn-outline">⚡ Comprar Licencia PRO</a>
+            </div>
+
+            <div class="hero-image-container">
+                <img src="ffra.jpg" alt="Interfaz de LinkToVideo" class="hero-image">
+            </div>
+        </div>
+    </header>
+
+    <section class="benefits">
+        <div class="container">
+            <div class="grid-3">
+                <div class="benefit-card">
+                    <span class="icon">💎</span>
+                    <h3>Calidad 4K Ultra HD</h3>
+                    <p>No pierdas ni un píxel. Si el vídeo original está en 4K, LinkToVideo lo descarga en 4K. Máxima fidelidad de imagen y audio.</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="icon">⚡</span>
+                    <h3>Solo Copiar y Pegar</h3>
+                    <p>Sin configuraciones raras. La app detecta el enlace automáticamente. Elige tu calidad y descarga en segundos.</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="icon">🛡️</span>
+                    <h3>Seguro y Privado</h3>
+                    <p>App nativa de escritorio. Olvídate de la publicidad invasiva, ventanas emergentes y riesgos de las webs online.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works">
+        <div class="container">
+            <h2>Tus vídeos en tu disco duro en 3 pasos</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Copia el enlace</h3>
+                    <p>Busca tu vídeo favorito en el navegador y copia la URL. La app lo detectará.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Elige Calidad</h3>
+                    <p>¿Solo audio MP3? ¿1080p? ¿4K? Tú decides el formato en un clic.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Descarga</h3>
+                    <p>Pulsa el botón rojo y disfruta de tu contenido offline para siempre.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="precios">
+        <div class="container">
+            <h2>Empieza gratis, pásate a PRO cuando quieras</h2>
+            <p>Prueba la potencia de la herramienta sin compromiso.</p>
+
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3>Versión Trial</h3>
+                    <div class="price">GRATIS</div>
+                    <ul class="features-list">
+                        <li>✅ 3 Descargas de prueba</li>
+                        <li>✅ Calidad hasta 4K</li>
+                        <li>✅ Sin límite de velocidad</li>
+                        <li>❌ Limitado a 3 usos</li>
+                    </ul>
+                    <a href="https://github.com/Videogamesscz/linktovideo/releases/download/LinkToVideoPro/LinkToVideo.Pro.exe" class="btn btn-red" style="width: 80%;">Descargar</a>
+                </div>
+
+                <div class="price-card pro">
+                    <div class="badge">Recomendado</div>
+                    <h3>Licencia PRO</h3>
+                    <div class="price">10€</div>
+                    <ul class="features-list">
+                        <li>✅ <strong>Descargas ILIMITADAS</strong></li>
+                        <li>✅ Licencia de por vida</li>
+                        <li>✅ Pago único (No suscripción)</li>
+                        <li>✅ Soporte prioritario</li>
+                    </ul>
+                    <a href="https://ko-fi.com/s/c88bda3cb6" target="_blank" class="btn btn-blue" style="width: 80%;">Comprar Licencia</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-final">
+        <div class="container">
+            <h2>Deja de depender de internet para ver tus vídeos</h2>
+            <a href="https://ko-fi.com/videogamesscz" target="_blank" class="btn btn-red" style="padding: 15px 40px; font-size: 1.2rem;">Conseguir LinkToVideo PRO Ahora</a>
+            <p style="margin-top: 15px; font-size: 0.8rem; opacity: 0.7;">Compatible con Windows 10 y 11. Instalación 100% Segura.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Video Games SCZ - Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
